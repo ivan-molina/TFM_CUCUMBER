@@ -12,11 +12,23 @@ pipeline {
     
     stage('Install dependencies') {
         steps {
-            bat 'echo %PATH%'
-            //sh 'npm install testCafe'
+            bat 'cd testcafe-cucumber-master'
+            bat 'npm install'
+
         }
-        
     }
+
+    stage('Execute test') {
+        steps {
+            bat './node_modules/.bin/cucumber-js.cmd'
+        }
+    }
+
+    stage('Publish reports') {
+        steps {
+            bat 'dir'
+        }
+    }    
     
   }
 }
