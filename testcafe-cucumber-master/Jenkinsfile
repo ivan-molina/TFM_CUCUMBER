@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+ 
+  tools {nodejs "recent_node"}
+ 
+  stages {
+    stage('Clonning Git') {
+        steps {
+            git 'https://github.com/ivan-molina/TFM_CUCUMBER.git'
+        }
+    }
+    
+    stage('Install dependencies') {
+        steps {
+            sh 'npm install'
+        }
+        
+    }
+    
+  }
+}
