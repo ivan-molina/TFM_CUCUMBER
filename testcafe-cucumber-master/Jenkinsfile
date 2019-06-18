@@ -6,8 +6,7 @@ pipeline {
   stages {
     stage('Build') {
         steps {   
-            sh 'npm install'
-            sh 'npm config ls'   
+            sh 'cd .\testcafe-cucumber-master\'
         }
     }    
     stage('Clonning Git') {
