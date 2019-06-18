@@ -20,7 +20,7 @@ pipeline {
 
     stage('Execute test') {
         steps {
-            bat './node_modules/.bin/cucumber-js.cmd'
+            bat 'npm run test-chrome'
         }
     }
 
