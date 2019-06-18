@@ -13,11 +13,11 @@ pipeline {
     stage('Install dependencies') {
         steps {
             bat '''
-                'cd testcafe-cucumber-master'
-                'npm install'
-                'npm install testcafe'
-                'npm i gherkin-testcafe cucumber'
-                'npm install cucumber-html-reporter --save-dev'
+                cd testcafe-cucumber-master
+                npm install
+                npm install testcafe
+                npm i gherkin-testcafe cucumber
+                npm install cucumber-html-reporter --save-dev
             '''
         }
     }
