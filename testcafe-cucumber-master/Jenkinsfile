@@ -1,7 +1,7 @@
 pipeline {
   agent any
  
-  tools {nodejs "recent_node"}
+  //tools {nodejs "recent_node"}
  
   stages {  
     stage('Clonning Git') {
@@ -12,7 +12,7 @@ pipeline {
     
     stage('Install dependencies') {
         steps {
-            sh 'cd testcafe-cucumber-master'
+            sh "cd testcafe-cucumber-master"
             //sh 'npm install testCafe'
         }
         
