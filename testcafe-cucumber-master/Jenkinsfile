@@ -13,7 +13,6 @@ pipeline {
     stage('Install dependencies') {
         steps {
             bat '''
-                echo '------------Install dependencies--------------'
                 'cd testcafe-cucumber-master'
                 'npm install'
                 'npm install testcafe'
