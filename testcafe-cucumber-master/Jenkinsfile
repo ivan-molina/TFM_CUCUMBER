@@ -35,6 +35,7 @@ pipeline {
 
     stage('Publish reports') {
         steps {
+            echo '------------Execute test--------------'
             bat 'dir'
         }
     }    
