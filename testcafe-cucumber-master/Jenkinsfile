@@ -3,12 +3,7 @@ pipeline {
  
   tools {nodejs "recent_node"}
  
-  stages {
-    stage('Build') {
-        steps {   
-            sh 'cd testcafe-cucumber-master'
-        }
-    }    
+  stages {  
     stage('Clonning Git') {
         steps {
             git 'https://github.com/ivan-molina/TFM_CUCUMBER.git'
@@ -17,6 +12,7 @@ pipeline {
     
     stage('Install dependencies') {
         steps {
+            sh 'cd testcafe-cucumber-master'
             sh 'npm install testCafe'
         }
         
