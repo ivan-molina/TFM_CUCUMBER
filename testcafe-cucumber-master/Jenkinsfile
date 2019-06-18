@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Build') {
         steps {   
-            sh 'cd .\testcafe-cucumber-master\'
+            sh 'cd testcafe-cucumber-master'
         }
     }    
     stage('Clonning Git') {
