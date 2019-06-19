@@ -44,7 +44,8 @@ pipeline {
         }
     } 
     stage('Publish HTML Report') {
-        publishHTML(target: [
+        steps{
+            publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
@@ -52,6 +53,7 @@ pipeline {
                 reportFiles: 'cucumber_report.html',
                 reportName: "cucumber_report.html"
             ])
+        }   
     }  
     
   }
