@@ -46,7 +46,7 @@ pipeline {
                 keepAll: true,
                 reportDir: 'coverage',
                 reportFiles: 'index.html',
-                reportName: "testcafe-cucumber-master/test/report/cucumber_report.html"
+                reportName: "testcafe-cucumber-master\test\report\cucumber_report.html"
             ])
         }
     }    
