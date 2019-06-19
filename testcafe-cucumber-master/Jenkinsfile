@@ -2,7 +2,7 @@ pipeline {
   agent any
  
   //tools {nodejs "recent_node"}
- 
+    
   stages {  
     stage('Clonning Git') {
         steps {
@@ -44,7 +44,7 @@ pipeline {
         }
     } 
     stage('Publish HTML Report') {
-        steps{
+        node{
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
@@ -53,7 +53,7 @@ pipeline {
                 reportFiles: 'cucumber_report.html',
                 reportName: "cucumber_report.html"
             ])
-        }   
+        } 
     }  
     
   }
