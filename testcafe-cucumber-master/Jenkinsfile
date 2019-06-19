@@ -34,24 +34,26 @@ pipeline {
         }
     }
 
-    stage('Publish reports') {
+    stage('Generate reports') {
         steps {
             bat '''
                 echo '------------Publish reports--------------'
                 cd testcafe-cucumber-master
                 node index.js
             '''
-                publishHTML (target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: 'testcafe-cucumber-master/test/report',
-                    reportFiles: 'cucumber_report.html',
-                    reportName: "cucumber_report.html"
-                ])
-            
         }
-    }    
+    } 
+    stage('Publish HTML Report') {
+        publishHTML 
+            (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'testcafe-cucumber-master/test/report',
+                reportFiles: 'cucumber_report.html',
+                reportName: "cucumber_report.html"
+            ])
+    }  
     
   }
 }
