@@ -35,8 +35,19 @@ pipeline {
 
     stage('Publish reports') {
         steps {
-            echo '------------Execute test--------------'
-            bat 'dir'
+            bat '''
+                echo '------------Publish reports--------------'
+                cd testcafe-cucumber-master
+                node index.js
+            '''
+            publishHTML (target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'coverage',
+                reportFiles: 'index.html',
+                reportName: "testcafe-cucumber-master/test/report/cucumber_report.html"
+            ])
         }
     }    
     
