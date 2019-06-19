@@ -41,7 +41,6 @@ pipeline {
                 cd testcafe-cucumber-master
                 node index.js
             '''
-            try{
                 publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
@@ -49,9 +48,6 @@ pipeline {
                 reportDir: 'testcafe-cucumber-master/test/report',
                 reportFiles: 'cucumber_report.html',
                 reportName: "cucumber_report.html"])
-            }catch(Exception e){
-                
-            }
             
         }
     }    
