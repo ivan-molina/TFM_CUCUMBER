@@ -44,8 +44,7 @@ pipeline {
         }
     } 
     stage('Publish HTML Report') {
-        publishHTML 
-            (target: [
+        publishHTML(target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
