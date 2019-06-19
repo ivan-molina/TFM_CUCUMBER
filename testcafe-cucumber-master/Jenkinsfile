@@ -42,12 +42,13 @@ pipeline {
                 node index.js
             '''
                 publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'testcafe-cucumber-master/test/report',
-                reportFiles: 'cucumber_report.html',
-                reportName: "cucumber_report.html"])
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'testcafe-cucumber-master/test/report',
+                    reportFiles: 'cucumber_report.html',
+                    reportName: "cucumber_report.html"
+                ])
             
         }
     }    
