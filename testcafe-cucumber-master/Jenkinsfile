@@ -60,7 +60,7 @@ pipeline {
     stage('Generate CUCUMBER REPORT') {
         steps{
             cucumber buildStatus: "UNSTABLE",
-                fileIncludePattern "**/report.json",
+                fileIncludePattern: "**/report.json",
                 jsonReportDirectory: 'testcafe-cucumber-master/test/report'
         }
     } 
