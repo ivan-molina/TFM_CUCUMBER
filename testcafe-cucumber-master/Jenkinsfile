@@ -69,21 +69,36 @@ pipeline {
 
             stage('Slack Message') {
                 steps {
-                    
-                    if(buildStatus == 'SUCCESSFUL'){
-                        slackSend channel: '#tfm',
-                        color: 'good',
-                        message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
-                    } else {
-                        slackSend channel: '#tfm',
-                        color: 'RED',
-                        colorCode = '#FF0000',
-                        message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
-                    }
-                    
+                    notifyBuild(currentBuild.result)
+                    /*slackSend channel: '#tfm',
+                    color: 'good',
+                    message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"*/   
                 }
             }
             
         }
 
+}
+
+def notifyBuild(String buildStatus = 'STARTED') {
+  // build status of null means successful
+  buildStatus =  buildStatus ?: 'SUCCESS'
+
+  // Default values
+  def channel = '#tfm'
+  def color
+  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def summary = "${subject} (${env.BUILD_URL})"
+
+  // Override default values based on build status
+  if (buildStatus == 'STARTED') {
+    color = '#FFFF00'
+  } else if (buildStatus == 'SUCCESS') {
+    color = '#00FF00'
+  } else {
+    color = '#FF0000'
+  }
+
+  // Send notifications
+  slackSend (channel: channel, color: color, message: summary)
 }
