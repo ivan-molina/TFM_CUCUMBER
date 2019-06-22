@@ -69,9 +69,22 @@ pipeline {
 
             stage('Slack Message') {
                 steps {
-                    slackSend channel: '#tfm',
-                        color: 'good',
-                        message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
+                    if ( buildResult == "SUCCESS" ) {
+                        slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
+                    }
+                    else if( buildResult == "FAILURE" ) { 
+                        slackSend color: "danger", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was failed"
+                    }
+                    else if( buildResult == "UNSTABLE" ) { 
+                        slackSend color: "warning", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was unstable"
+                    }
+                    else {
+                        slackSend color: "danger", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} its resulat was unclear"	
+                    }
+
+                    //slackSend channel: '#tfm',
+                    //    color: 'good',
+                    //    message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
                 }
             }
             
