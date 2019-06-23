@@ -5,6 +5,8 @@ const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber')
 const errorHandling = require('../support/errorHandling');
 const TIMEOUT = 20000;
 
+const bugReporter = require('../../API-REST/requests');
+
 let isTestCafeError = false;
 let attachScreenshotToReport = null;
 let cafeRunner = null;
@@ -82,6 +84,7 @@ AfterAll(function() {
     }
 
     waitForTestCafe();
+    bugReporter.makeRequest;
 });
 
 const getIsTestCafeError = function() {
