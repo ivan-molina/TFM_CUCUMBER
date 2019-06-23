@@ -84,7 +84,7 @@ AfterAll(function() {
     }
 
     waitForTestCafe();
-    bugReporter.makeRequest;
+    bugReporter.makeRequest();
 });
 
 const getIsTestCafeError = function() {
