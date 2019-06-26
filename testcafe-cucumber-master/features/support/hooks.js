@@ -65,7 +65,6 @@ After(function() {
 
 After(async function  (testCase) {
     const world = this;
-    const tc = cafeRunner;
 
     if (testCase.result.status === Status.FAILED) {
         isTestCafeError = true;
