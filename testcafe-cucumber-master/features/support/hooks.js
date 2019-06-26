@@ -47,9 +47,6 @@ setDefaultTimeout(TIMEOUT);
 Before(function(scenario) {
     runTest(n, this.setBrowser());
     createTestFile();
-
-    
-
     n += 2;
     return this.waitForTestController.then(function(testController) {
         return testController.maximizeWindow();
