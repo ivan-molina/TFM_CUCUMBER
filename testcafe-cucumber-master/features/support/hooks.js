@@ -44,7 +44,7 @@ function runTest(iteration, browser) {
 
 setDefaultTimeout(TIMEOUT);
 
-Before(function(scenario) {
+Before(function() {
     runTest(n, this.setBrowser());
     createTestFile();
     n += 2;
@@ -73,7 +73,6 @@ After(async function  (testCase) {
         errorHandling.addErrorToController();
         await errorHandling.ifErrorTakeScreenshot(testController)
     }
-    //console.log("TestRun-->"+scenario);
 });
 
 AfterAll(function() {
