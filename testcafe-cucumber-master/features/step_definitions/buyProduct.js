@@ -41,7 +41,7 @@ const deliveryInformation = require('../support/pages/PageObjectDeliveryInformat
     When('I edit {string} in the password form', async function (string) {
        await testController.click(signIn.SignIn.password());
        await testController.typeText(signIn.SignIn.password(), string);
-     });
+    });
 
     When('I click the Sign In button', async function () {
        await testController.click(signIn.SignIn.signInButton());
