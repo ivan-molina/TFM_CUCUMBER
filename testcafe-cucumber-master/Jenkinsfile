@@ -16,22 +16,22 @@ pipeline {
                 steps {
                     bat '''
                         echo '------------Install dependencies--------------'
-                        cd testcafe-cucumber-master    
-                    '''
-                        /*npm install testcafe
+                        cd testcafe-cucumber-master
+                        npm install testcafe
                         npm install
                         npm i gherkin-testcafe cucumber
-                        npm install cucumber-html-reporter --save-dev*/
+                        npm install cucumber-html-reporter --save-dev    
+                    '''
                 }
             }
 
             stage('Execute test') {
                 steps {
-                    sleep 20
+                    //sleep 20
                     bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
-                        npm run test-chrome       
+                        npm test     
                     '''
                     //./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json
                     //npm run test-chrome
