@@ -54,8 +54,7 @@ Before(function(scenario) {
 });
 
 After(function(scenario) {
-    let name = scenario.name;
-    console.log(scenario);
+    //console.log(scenario);
     bugReporter.makeRequest(scenario.pickle.name,scenario.result.status);
 });
 
@@ -64,7 +63,6 @@ After(function() {
     testControllerHolder.free();
 });
 
-//
 After(async function  (testCase) {
     const world = this;
     const tc = cafeRunner;
