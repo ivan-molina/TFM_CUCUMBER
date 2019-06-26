@@ -14,7 +14,6 @@ pipeline {
             
             stage('Install dependencies') {
                 steps {
-                    try{
                         bat '''
                         echo '------------Install dependencies--------------'
                         cd testcafe-cucumber-master
@@ -22,11 +21,7 @@ pipeline {
                         npm install
                         npm i gherkin-testcafe cucumber
                         npm install cucumber-html-reporter --save-dev    
-                        '''
-                    }catch(Exception e){
-
-                    }
-                    
+                        '''    
                 }
             }
 
