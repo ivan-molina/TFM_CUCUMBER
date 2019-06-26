@@ -22,6 +22,7 @@ pipeline {
                         npm i gherkin-testcafe cucumber
                         npm install cucumber-html-reporter --save-dev
                     '''
+                    sleep 20
                 }
             }
 
