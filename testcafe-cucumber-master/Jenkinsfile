@@ -29,7 +29,7 @@ pipeline {
             stage('Execute test') {
                 steps {
                     sleep 20
-                    bat npm run test-chrome
+                    bat 'npm run test-chrome'
                     bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
