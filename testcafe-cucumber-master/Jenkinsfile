@@ -31,7 +31,7 @@ pipeline {
                     bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
-                        'npm run test-chrome'        
+                        npm run test-chrome       
                     '''
                     //./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json
                     //npm run test-chrome
