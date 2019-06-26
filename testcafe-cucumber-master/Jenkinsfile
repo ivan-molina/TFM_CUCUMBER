@@ -16,10 +16,10 @@ pipeline {
                 steps {
                     bat '''
                         echo '------------Install dependencies--------------'
-                        cd testcafe-cucumber-master
-                        npm install
+                        cd testcafe-cucumber-master    
                     '''
                         /*npm install testcafe
+                        npm install
                         npm i gherkin-testcafe cucumber
                         npm install cucumber-html-reporter --save-dev*/
                 }
