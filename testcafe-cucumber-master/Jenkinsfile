@@ -28,12 +28,12 @@ pipeline {
             stage('Execute test') {
                 steps {
                     sleep 20
-                    //bat 'npm run test-chrome'
-                    bat '''
+                    bat 'npm run test-chrome'
+                    /*bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
                         ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
-                    '''
+                    '''*/
                     //npm run test-chrome
                 }
             }
