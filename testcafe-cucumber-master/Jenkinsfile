@@ -22,12 +22,14 @@ pipeline {
                         npm i gherkin-testcafe cucumber
                         npm install cucumber-html-reporter --save-dev
                     '''
-                    sleep 20
+                   
                 }
             }
 
             stage('Execute test') {
                 steps {
+                    sleep 20
+                    bat npm run test-chrome
                     bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
