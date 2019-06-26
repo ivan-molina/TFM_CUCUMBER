@@ -44,7 +44,7 @@ function runTest(iteration, browser) {
 
 setDefaultTimeout(TIMEOUT);
 
-Before(function() {
+Before(async function() {
     runTest(n, this.setBrowser());
     createTestFile();
     n += 2;
