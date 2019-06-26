@@ -44,13 +44,22 @@ function runTest(iteration, browser) {
 
 setDefaultTimeout(TIMEOUT);
 
-Before(function() {
+Before(function(scenario) {
     runTest(n, this.setBrowser());
     createTestFile();
+
+    
+
     n += 2;
     return this.waitForTestController.then(function(testController) {
         return testController.maximizeWindow();
     });
+});
+
+After(function(scenario) {
+    let name = scenario.name;
+    console.log(scenario);
+    bugReporter.makeRequest(scenario.pickle.name,scenario.result.status);
 });
 
 After(function() {
@@ -58,14 +67,18 @@ After(function() {
     testControllerHolder.free();
 });
 
-After(async function(testCase) {
+//
+After(async function  (testCase) {
     const world = this;
+    const tc = cafeRunner;
+
     if (testCase.result.status === Status.FAILED) {
         isTestCafeError = true;
         attachScreenshotToReport = world.attachScreenshotToReport;
         errorHandling.addErrorToController();
         await errorHandling.ifErrorTakeScreenshot(testController)
     }
+    //console.log("TestRun-->"+scenario);
 });
 
 AfterAll(function() {
@@ -82,11 +95,9 @@ AfterAll(function() {
             clearInterval(intervalId);
         }
     }
-
     waitForTestCafe();
-    bugReporter.makeRequest();
 });
-
+  
 const getIsTestCafeError = function() {
     return isTestCafeError;
 };

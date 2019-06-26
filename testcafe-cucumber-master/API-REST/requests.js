@@ -1,5 +1,5 @@
 
-   exports.makeRequest = function bug_request(){
+   exports.makeRequest = function bug_request(name, desc){
 
     var request = require("request");
     var options = { method: 'POST',
@@ -8,7 +8,8 @@
       { token: '138e580d52ec5fc373a006614ef328b2e49383c1b70f53c1bcea4e3591362acb',
         key: '065dc4cbee4b49286a1a9ca558d8a634',
         idList: '5d0f6166d0d89c66745954ba',
-        name: 'prueba_bug_8' },
+        name: name,
+        desc: desc },
       headers: 
       { 'cache-control': 'no-cache',
         Connection: 'keep-alive',

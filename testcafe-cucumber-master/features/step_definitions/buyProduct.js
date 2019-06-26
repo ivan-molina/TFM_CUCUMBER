@@ -50,3 +50,16 @@ const deliveryInformation = require('../support/pages/PageObjectDeliveryInformat
     When('I click Continue in delivery Information Screen', async function () {
        await testController.click(deliveryInformation.DeliveryInformation.continue());
     });
+
+    // features/support/setup.js
+   var {setDefinitionFunctionWrapper} = require('cucumber');
+   var isGenerator = require('is-generator');
+   var Promise = require('bluebird');
+
+   setDefinitionFunctionWrapper(function (fn) {
+   if (isGenerator.fn(fn)) {
+      return Promise.coroutine(fn);
+   } else {
+      return fn;
+   }
+   });
