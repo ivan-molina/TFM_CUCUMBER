@@ -29,8 +29,9 @@ pipeline {
                 steps {
                     bat '''
                         echo '------------Execute test--------------'
-                        cd C:/Users/ivanm/OneDrive/Documents/TFM/testcafe-cucumber-master/TFM_CUCUMBER_2/TFM_CUCUMBER/testcafe-cucumber-master
-                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
+                        cd testcafe-cucumber-master
+                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json
+                            
                     '''
                     //npm run test-chrome
                 }
