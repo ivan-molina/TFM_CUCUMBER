@@ -30,8 +30,7 @@ pipeline {
                     bat '''
                         echo '------------Execute test--------------'
                         cd testcafe-cucumber-master
-                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json
-                            
+                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
                     '''
                     //npm run test-chrome
                 }
@@ -44,19 +43,6 @@ pipeline {
                         cd testcafe-cucumber-master
                         node index.js
                     '''
-                }
-            } 
-
-            stage('Publish HTML Report') {
-                steps{
-                    publishHTML (target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: 'testcafe-cucumber-master/test/report',
-                        reportFiles: 'cucumber_report.html',
-                        reportName: "cucumber_report.html"
-                    ])
                 }
             } 
 
