@@ -26,17 +26,17 @@ pipeline {
             }
 
             stage('Execute test') {
-                try{
-                    steps {
-                    bat '''
-                        echo '------------Execute test--------------'
-                        cd testcafe-cucumber-master
-                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
-                    '''
-                    //npm run test-chrome
+                steps {
+                    try{
+                        bat '''
+                            echo '------------Execute test--------------'
+                            cd testcafe-cucumber-master
+                            ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
+                        '''
+                        //npm run test-chrome
+                    }catch(Exception ex){
+                        throw ex
                     }
-                }catch(Exception e){
-                    
                 }    
             }
             
