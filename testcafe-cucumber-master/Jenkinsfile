@@ -25,21 +25,21 @@ pipeline {
                 }
             }
 
-            try{
-                stage('Execute test') {
+            stage('Execute test') {
+                try{
                     steps {
-                        bat '''
-                            echo '------------Execute test--------------'
-                            cd testcafe-cucumber-master
-                            ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
-                        '''
-                        //npm run test-chrome
+                    bat '''
+                        echo '------------Execute test--------------'
+                        cd testcafe-cucumber-master
+                        ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
+                    '''
+                    //npm run test-chrome
                     }
-                }
-            }catch(Exception e){
-
+                }catch(Exception e){
+                    
+                }    
             }
-
+            
             stage('Generate reports') {
                 steps {
                     bat '''
