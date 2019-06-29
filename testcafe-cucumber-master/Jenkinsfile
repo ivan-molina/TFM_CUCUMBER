@@ -1,77 +1,77 @@
 
 
-node {
+pipeline {
   agent any
  
   //tools {nodejs "recent_node"}
  
-        stages {  
-            stage('Clonning Git') {
-                steps {
-                    git 'https://github.com/ivan-molina/TFM_CUCUMBER.git'
-                }
-            }
+        stages {
+            script{
+                try{
+                    stage('Clonning Git') {
+                        steps {
+                            git 'https://github.com/ivan-molina/TFM_CUCUMBER.git'
+                        }
+                    }
             
-            stage('Install dependencies') {
-                steps {
-                    bat '''
-                        echo '------------Install dependencies--------------'
-                        cd testcafe-cucumber-master
-                        npm install
-                        npm install testcafe
-                        npm i gherkin-testcafe cucumber
-                        npm install cucumber-html-reporter --save-dev
-                    '''
-                }
-            }
+                    stage('Install dependencies') {
+                        steps {
+                            bat '''
+                                echo '------------Install dependencies--------------'
+                                cd testcafe-cucumber-master
+                                npm install
+                                npm install testcafe
+                                npm i gherkin-testcafe cucumber
+                                npm install cucumber-html-reporter --save-dev
+                            '''
+                        }
+                    }
 
-            stage('Execute test') {
-                steps {
-                    script {
-                        try{
+                    stage('Execute test') {
+                        steps {
+                    
                             bat '''
                                 echo '------------Execute test--------------'
                                 cd testcafe-cucumber-master
                                 ./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json    
                             '''
                             //npm run test-chrome
-                        }catch(Exception ex){
-                            throw ex
+                        }    
+                    }
+                }catch(ex){
+                    trow ex
+                }finally{
+                    stage('Generate reports') {
+                        steps {
+                            bat '''
+                                echo '------------Publish reports--------------'
+                                cd testcafe-cucumber-master
+                                node index.js
+                            '''
+                        }
+                    } 
+
+                    stage('Generate CUCUMBER REPORT') {
+                        steps{
+                            cucumber buildStatus: "UNSTABLE",
+                            fileIncludePattern: "report.json",
+                            jsonReportDirectory: 'testcafe-cucumber-master/reports'
                         }
                     }
-                }    
-            }
-            
-            stage('Generate reports') {
-                steps {
-                    bat '''
-                        echo '------------Publish reports--------------'
-                        cd testcafe-cucumber-master
-                        node index.js
-                    '''
-                }
-            } 
 
-            stage('Generate CUCUMBER REPORT') {
-                steps{
-                    cucumber buildStatus: "UNSTABLE",
-                    fileIncludePattern: "report.json",
-                    jsonReportDirectory: 'testcafe-cucumber-master/reports'
-                }
+                    stage('Slack Message') {
+                        steps {
+                            notifyBuild(currentBuild.result)
+                            /*slackSend channel: '#tfm',
+                            color: 'good',
+                            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"*/   
+                        }
+                    }
+                }  
             }
-
-            stage('Slack Message') {
-                steps {
-                    notifyBuild(currentBuild.result)
-                    /*slackSend channel: '#tfm',
-                    color: 'good',
-                    message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"*/   
-                }
-            }
-            
-        }
-
+        }    
 }
+
 
 def notifyBuild(String buildStatus = 'STARTED') {
   // build status of null means successful
