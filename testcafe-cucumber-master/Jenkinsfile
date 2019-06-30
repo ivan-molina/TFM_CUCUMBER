@@ -39,30 +39,30 @@ pipeline {
         post{
                 always{
                     //stage('Generate reports') {
-                        steps {
+                        //steps {
                             bat '''
                                 echo '------------Publish reports--------------'
                                 cd testcafe-cucumber-master
                                 node index.js
                             '''
-                        }
+                        //}
                     //} 
 
                     //stage('Generate CUCUMBER REPORT') {
-                        steps{
+                        //steps{
                             cucumber buildStatus: "UNSTABLE",
                             fileIncludePattern: "report.json",
                             jsonReportDirectory: 'testcafe-cucumber-master/reports'
-                        }
+                        //}
                     //}
 
                     //stage('Slack Message') {
-                        steps {
+                        //steps {
                             notifyBuild(currentBuild.result)
                             /*slackSend channel: '#tfm',
                             color: 'good',
                             message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"*/   
-                        }
+                        //}
                     //}
                 }
         }
