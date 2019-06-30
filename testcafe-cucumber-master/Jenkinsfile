@@ -34,8 +34,9 @@ pipeline {
                     '''
                     //npm run test-chrome
                 }    
-            }
-            post{
+            }     
+        }
+        post{
                 always{
                     stage('Generate reports') {
                         steps {
@@ -64,9 +65,8 @@ pipeline {
                         }
                     }
                 }
-            }
-             
-        }    
+        }
+
 }
 
 
