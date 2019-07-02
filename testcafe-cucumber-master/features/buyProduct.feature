@@ -24,6 +24,6 @@ Feature: Buy Oscommerce product
         And I click update button
         And I click the checkout button
         And I edit "ivanmolmar@outlook.es" in the email field
-        And I edit "paswordfalso123" in the password form
+        And I edit "paswordfalso1234" in the password form
         And I click the Sign In button
         And I click Continue in delivery Information Screen
